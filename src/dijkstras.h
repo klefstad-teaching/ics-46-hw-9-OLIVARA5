@@ -14,6 +14,9 @@ struct Edge {
     int dst=0;
     int weight=0;
     Edge(int s = 0, int d = 0, int w = 0) : src(s), dst(d), weight(w) {}
+    bool operator<(const Edge& other) const {
+        return weight < other.weight; 
+    }
     friend istream& operator>>(istream& in, Edge& e)
     {
         return in >> e.src >> e.dst >> e.weight;
