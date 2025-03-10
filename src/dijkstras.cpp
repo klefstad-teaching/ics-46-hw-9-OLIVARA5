@@ -12,7 +12,7 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
     vector<bool> discovered(numVertices, false); 
     vector<int> distances(numVertices, INF);
     distances[source] = 0;
-    previous[source] = -1;
+    previous.resize(numVertices, -1);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     pq.push({0, source});
     while(!pq.empty()){

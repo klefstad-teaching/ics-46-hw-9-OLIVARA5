@@ -96,6 +96,7 @@ void print_word_ladder(const vector<string>& ladder) {
     for (const string& word : ladder) {
         cout << word << " ";
     }
+    cout << endl;
 }
 
 void verify_word_ladder(){
