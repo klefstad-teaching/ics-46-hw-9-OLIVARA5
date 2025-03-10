@@ -39,18 +39,10 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
 }
 
 bool is_adjacent(const string& word1, const string& word2){
-    int adjacent = 0;
-    if(word1.length() != word2.length()){
-        return false;
-    }
-    for(size_t i = 0; i < word1.length(); ++i){
-        if(word1[i] != word2[i]){
-            adjacent++;
-        }
-        if(adjacent > 1){
-            return false;
-        }
-    }
+    int i = word1.size();
+    int j = word2.size();
+
+    int adjacent = levenshteinAlgorithm(word1, word2, i, j);
     return adjacent == 1;
 }
 
