@@ -113,6 +113,6 @@ void verify_word_ladder(){
     my_assert(generate_word_ladder("car", "cheat", word_list).size() == 4);
 }
 
-void my_assert(bool e){
-    cout << #e << ((e) ? " passed": " failed") << endl;
+void my_assert(bool e) {
+    cout << (e ? "Passed" : "Failed") << endl;
 }
