@@ -15,7 +15,7 @@ void error(string word1, string word2, string msg){
 }
 
 int levenshteinAlgorithm(const std::string& str1, const std::string& str2){
-    vector<vector<int>> la(str1.length() + 1, vector<int>((str2.length() + 1)));
+    vector<vector<int>> la(str1.length() + 1, vector<int>((str2.length() + 1),0));
 
     for(size_t i = 0; i <= str1.length(); ++i){
         la[i][0] = i;
