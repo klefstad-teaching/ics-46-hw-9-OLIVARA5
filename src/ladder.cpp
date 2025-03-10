@@ -43,7 +43,7 @@ bool is_adjacent(const string& word1, const string& word2){
     if(word1.length() != word2.length()){
         return false;
     }
-    for(int i = 0; i < word1.length(); ++i){
+    for(size_t i = 0; i < word1.length(); ++i){
         if(word1[i] != word2[i]){
             adjacent++;
         }
@@ -62,7 +62,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     while(!ladder_queue.empty()){
         vector<string> ladder = ladder_queue.front();
         ladder_queue.pop();
-        string last_word = ladder_queue.back();
+        string last_word = ladder.back();
         for(const auto&word: word_list){
             if is_adjacent(last_word, word){
                 if(visited.find(word) == visited.end()){
