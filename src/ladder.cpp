@@ -14,6 +14,30 @@ void error(string word1, string word2, string msg){
     cout << msg << word1 << " and " << word2 << endl;
 }
 
+int levenshteinAlgorithm(const std::string& str1, const std::string& str2, int i, int j) {
+
+    if (i == 0) return i; 
+    if (j == 0) return j; 
+
+    if (str1[i - 1] == str2[j - 1]) {
+        return levenshteinAlgorithm(str1, str2, i - 1, j - 1);
+    }
+
+    return 1 + std::min({
+        levenshteinAlgorithm(str1, str2, i, j - 1),  
+        levenshteinAlgorithm(str1, str2, i - 1, j),   
+        levenshteinAlgorithm(str1, str2, i - 1, j - 1) 
+    });
+}
+
+bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
+    int i = str1.size();
+    int j = str2.size();
+
+    int distance = levenshteinAlgorithm(str1, str2, i, j);
+    return distance <= d;
+}
+
 bool is_adjacent(const string& word1, const string& word2){
     int adjacent = 0;
     if(word1.length() != word2.length()){
