@@ -6,13 +6,13 @@ int main(int argc, char *argv[]) {
     testing::InitGoogleTest(&argc, argv);  
     int result = RUN_ALL_TESTS();
     Graph G;
-    file_to_graph("src/small.txt", G);
+    file_to_graph("src/medium.txt", G);
     vector<int> previous(G.numVertices, -1);
     int source = 0; 
-    int destination = 3; 
+    int destination = 5;
     
     vector<int> distances = dijkstra_shortest_path(G, source, previous);
-    
+
     vector<int> path = extract_shortest_path(distances, previous, destination);
     
     cout << "Shortest path from " << source << " to " << destination << ": ";
