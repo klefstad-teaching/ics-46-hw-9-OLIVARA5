@@ -54,6 +54,13 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     queue<vector<string>> ladder_queue;
     ladder_queue.push({begin_word});
     set<string> visted;
+    if (word_list.end() == word_list.find(end_word)) {
+        return {};
+    }
+    if (begin_word == end_word) {
+        return {};
+    }
+    
     visted.insert(begin_word);
     while(!ladder_queue.empty()){
         vector<string> ladder = ladder_queue.front();
@@ -93,10 +100,16 @@ void load_words(set<string> &word_list, const string& file_name) {
 }
 
 void print_word_ladder(const vector<string>& ladder) {
-    for (const string& word : ladder) {
-        cout << word << " ";
+    if (ladder.size() == 0) {
+        cout << "No word ladder found." << endl;
+    } else {
+        cout << "Word ladder found: ";
+        for (size_t i = 0; i < ladder.size(); ++i) {
+            cout << ladder[i] << ' ';
+        }
+        cout << endl;
     }
-    cout << endl;
+
 }
 
 void verify_word_ladder(){
