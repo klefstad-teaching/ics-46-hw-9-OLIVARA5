@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
     testing::InitGoogleTest(&argc, argv);  
     int result = RUN_ALL_TESTS();
     Graph G;
-    file_to_graph("src/medium.txt", G);
+    file_to_graph("src/large.txt", G);
     vector<int> previous(G.numVertices, -1);
     int source = 0; 
     int destination = 5;

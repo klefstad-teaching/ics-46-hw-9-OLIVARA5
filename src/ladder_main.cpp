@@ -7,6 +7,6 @@ int main(int argc, char *argv[]) {
     int result = RUN_ALL_TESTS();
     set<string> word_list;
     load_words(word_list, "src/words.txt");
-    print_word_ladder(generate_word_ladder("marty", "curls", word_list));
+    verify_word_ladder();
     return result;
 }

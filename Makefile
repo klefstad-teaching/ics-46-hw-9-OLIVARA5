@@ -4,8 +4,8 @@ LDFLAGS = -lgtest -lgtest_main -pthread
 
 all: main
 
-main: src/dijkstras_main.cpp dijkstras.o student_gtests.o ladder.o
-	$(CXX) $(CXXFLAGS) src/dijkstras_main.cpp -o main dijkstras.o student_gtests.o ladder.o $(LDFLAGS)
+main: src/ladder_main.cpp dijkstras.o student_gtests.o ladder.o
+	$(CXX) $(CXXFLAGS) src/ladder_main.cpp -o main dijkstras.o student_gtests.o ladder.o $(LDFLAGS)
 
 dijkstras.o: src/dijkstras.cpp
 	$(CXX) $(CXXFLAGS) -c src/dijkstras.cpp -o dijkstras.o
