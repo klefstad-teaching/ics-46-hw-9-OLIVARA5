@@ -14,40 +14,37 @@ void error(string word1, string word2, string msg){
     cout << msg << word1 << " and " << word2 << endl;
 }
 
-int levenshteinAlgorithm(const std::string& str1, const std::string& str2){
-    vector<vector<int>> la(str1.length() + 1, vector<int>((str2.length() + 1),0));
 
-    for(size_t i = 0; i <= str1.length(); ++i){
-        la[i][0] = i;
-    }
-    for (size_t j = 0; j <= str2.length(); j++) {
-        la[0][j] = j;
-    }
- 
-    for (size_t i = 1; i <= str1.length(); i++) {
-        for (size_t j = 1; j <= str2.length(); j++) {
-            if (str1[i-1] == str2[j-1]) {
-                la[i][j] = la[i-1][j-1];
-            } else {
-                la[i][j] = 1 + min(la[i-1][j], min(la[i][j-1], la[i-1][j-1]));
-            }
+
+bool edit_distance_within(const string& str1, const string& str2, int d) {
+    int len1 = str1.size();
+    int len2 = str2.size();
+    
+    if (abs(len1 - len2) > d) return false;
+
+    int edits = 0, i = 0, j = 0;
+    
+    while (i < len1 && j < len2) {
+        if (str1[i] != str2[j]) {
+            edits++;
+            if (edits > d) return false;
+
+            if (len1 > len2) i++;
+            else if (len1 < len2) j++;
+            else { i++; j++; }  
+        } else {
+            i++; j++;
         }
     }
- 
-
-    return la[str1.length()][str2.length()];
-}
-
-bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
-
-    int distance = levenshteinAlgorithm(str1, str2);
-    return distance <= d;
+    
+    edits += abs((len1 - i) - (len2 - j));
+    
+    return edits <= d;
 }
 
 bool is_adjacent(const string& word1, const string& word2){
 
-    int adjacent = levenshteinAlgorithm(word1, word2);
-    return adjacent == 1;
+    return edit_distance_within(word1, word2, 1);
 }
 
 vector<string> generate_word_ladder(const string& begin_word, const string& end_word, const set<string>& word_list){
